@@ -1,18 +1,18 @@
 #!/bin/bash
 
-X=$(cat /root/.bitgreen/bitgreen.conf | grep masternodeblsprivkey=)
+X=$(cat /root/.bitcorn/bitcorn.conf | grep masternodeblsprivkey=)
 ## If no BLS key build one first!
 if [ ! ${X} ]; then
-  ./bitgreend -daemon
-  until ./bitgreen-cli bls generate >/root/.bitgreen/bls.json 2>/dev/null; do
+  ./bitcornd -daemon
+  until ./bitcorn-cli bls generate >/root/.bitcorn/bls.json 2>/dev/null; do
     echo "Waiting for daemon to start.."
     sleep 5
   done
-  ./bitgreen-cli stop
-  KEY=$(cat /root/.bitgreen/bls.json | grep secret | sed 's/\( "secret": "\)\|"\|,\| //g')
-  echo "masternode=1" >>/root/.bitgreen/bitgreen.conf
-  echo "masternodeblsprivkey=${KEY}" >>/root/.bitgreen/bitgreen.conf
+  ./bitcorn-cli stop
+  KEY=$(cat /root/.bitcorn/bls.json | grep secret | sed 's/\( "secret": "\)\|"\|,\| //g')
+  echo "masternode=1" >>/root/.bitcorn/bitcorn.conf
+  echo "masternodeblsprivkey=${KEY}" >>/root/.bitcorn/bitcorn.conf
 fi
 
 ## Start daaemon again and be busy - if startup fails do reindex.
-./bitgreend || ./bitgreend -reindex
+./bitcornd || ./bitcornd -reindex

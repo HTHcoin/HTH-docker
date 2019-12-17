@@ -3,9 +3,9 @@ set -e
 
 BASECMD="protx register_prepare HASH INDEX IP OWNER PUBLIC OWNER 0 PAYOUT FEE"
 
-bitgreen-cli settxfee 0.0002
+bitcorn-cli settxfee 0.0002
 ## Generate a new payout address or specify you address here
-PAYOUT=$(bitgreen-cli getnewaddress Payout p2sh-segwit)
+PAYOUT=$(bitcorn-cli getnewaddress Payout p2sh-segwit)
 FEE=$PAYOUT
 #PAYOUT="3..."
 #FEE="3... or G..."
@@ -18,8 +18,8 @@ while read -r item; do
   }
   IP=$(_jq ".ip")
   PUBLIC=$(_jq ".public")
-  OWNER=$(bitgreen-cli getnewaddress "$(_jq '.node')_OWN")
-  COLLATERAL=$(bitgreen-cli getnewaddress "$(_jq '.node')_COL")
+  OWNER=$(bitcorn-cli getnewaddress "$(_jq '.node')_OWN")
+  COLLATERAL=$(bitcorn-cli getnewaddress "$(_jq '.node')_COL")
   PREPCOMMAND=${BASECMD}
   PREPCOMMAND=${PREPCOMMAND//OWNER/$OWNER}
   PREPCOMMAND=${PREPCOMMAND//PUBLIC/$PUBLIC}
@@ -35,8 +35,8 @@ done <<<$(cat params.json | jq -r -c '.[]')
 TXARR=$(echo "${TXARR}" | jq -c '."'"${FEE}"'"=1')
 #TXARR=$(echo "${TXARR}" | jq -c '."'"${PAYOUT}"'"=1')
 
-echo "bitgreen-cli sendmany '' '$TXARR'"
-HASH=$(bitgreen-cli sendmany "" "$TXARR")
+echo "bitcorn-cli sendmany '' '$TXARR'"
+HASH=$(bitcorn-cli sendmany "" "$TXARR")
 echo $HASH
 sed -i -e "s/HASH/$HASH/g" preps.txt
 
@@ -46,10 +46,10 @@ while read -r item; do
   }
 
   sed -i -e "s/$(_jq '.address')_INDEX/$(_jq '.vout')/" preps.txt
-done <<<$(bitgreen-cli gettransaction $HASH | jq -c '.details[]')
+done <<<$(bitcorn-cli gettransaction $HASH | jq -c '.details[]')
 
 # Wait for confirmation here
-while [ $(bitgreen-cli gettransaction $HASH | jq -r .confirmations) -lt 1  ]; do
+while [ $(bitcorn-cli gettransaction $HASH | jq -r .confirmations) -lt 1  ]; do
   echo "Waiting for confirmations..."
   sleep 10
 done
@@ -57,11 +57,11 @@ done
 rm -f signs.txt
 while read -r item; do
   echo "Signing next..."
-  SIGN=$(bitgreen-cli $item)
-  RESULT=$(bitgreen-cli signmessage "$(echo $SIGN | jq -r .collateralAddress)" "$(echo $SIGN | jq -r .signMessage)")
-  TXID=$(bitgreen-cli protx register_submit "$(echo $SIGN | jq -r .tx)" "$RESULT")
+  SIGN=$(bitcorn-cli $item)
+  RESULT=$(bitcorn-cli signmessage "$(echo $SIGN | jq -r .collateralAddress)" "$(echo $SIGN | jq -r .signMessage)")
+  TXID=$(bitcorn-cli protx register_submit "$(echo $SIGN | jq -r .tx)" "$RESULT")
   echo "$TXID" >> signs.txt
-  while [ $(bitgreen-cli gettransaction $TXID | jq -r .confirmations) -lt 1 ]; do
+  while [ $(bitcorn-cli gettransaction $TXID | jq -r .confirmations) -lt 1 ]; do
     echo "Waiting for confirmations..."
     sleep 10
   done
