@@ -1,0 +1,10 @@
+FROM ubuntu:18.04
+
+COPY bin /opt/app
+EXPOSE 9332
+EXPOSE 9333
+WORKDIR /opt/app/
+
+ENV PATH=/opt/app:$PATH
+
+CMD ./entrypoint.sh

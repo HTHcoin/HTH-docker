@@ -58,11 +58,9 @@ logtimestamps=1
 port=${port}
 externalip=${IP}
 
-addnode=45.63.2.241
-addnode=104.156.249.186
-addnode=140.82.12.18
-addnode=149.28.239.44
-addnode=149.28.61.99
+addnode=45.63.77.163
+addnode=104.156.231.87
+addnode=69.90.132.181
 EOF
 
 systemctl start bitcorn-${idstring}

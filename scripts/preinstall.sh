@@ -31,19 +31,19 @@ if [[ $(cat ~/.bashrc | grep bitcorn | wc -l) -eq 0 ]]; then
 fi
 source ~/.bashrc
 
-docker login registry.gitlab.com -u bitg-pub -p fzxLG9DGzhznyWxkJ6oB >/dev/null 2>&1
+#docker login registry.gitlab.com -u bitcorn-pub -p fzxLG9DGzhznyWxkJ6oB >/dev/null 2>&1
 
 ## Download the real scripts here
-wget https://gitlab.com/bitgreen/bitg-docker/raw/master/scripts/install_bitg.sh -O /opt/bitcorn/install_bitcorn.sh
-wget https://gitlab.com/bitgreen/bitg-docker/raw/master/scripts/multi_install_bitg.sh -O /opt/bitcorn/multi_install_bitcorn.sh
-wget https://gitlab.com/bitgreen/bitg-docker/raw/master/scripts/bitg_control.sh -O /opt/bitcorn/bitcorn_control.sh
-wget https://gitlab.com/bitgreen/bitg-docker/raw/master/scripts/bitg_all_params.sh -O /opt/bitcorn/bitcorn_all_params.sh
-wget https://gitlab.com/bitgreen/bitg-docker/raw/master/scripts/uninstall_bitg.sh -O /opt/bitcorn/uninstall_bitcorn.sh
-wget https://gitlab.com/bitgreen/bitg-docker/raw/master/scripts/bitg_mn_status.sh -O /opt/bitcorn/bitcorn_mn_status.sh
-wget https://gitlab.com/bitgreen/bitg-docker/raw/master/scripts/bitg-cli.sh -O /opt/bitcorn/bitcorn-cli.sh
-wget https://gitlab.com/bitgreen/bitg-docker/raw/master/scripts/bitg_repair.sh -O /opt/bitcorn/bitcorn_repair.sh
-chmod +x /opt/bitg/*.sh
+wget https://raw.githubusercontent.com/BITCORNProject/BITCORN-docker/master/scripts/install_bitcorn.sh -O /opt/bitcorn/install_bitcorn.sh
+wget https://raw.githubusercontent.com/BITCORNProject/BITCORN-docker/master/scripts/multi_install_bitcorn.sh -O /opt/bitcorn/multi_install_bitcorn.sh
+wget https://raw.githubusercontent.com/BITCORNProject/BITCORN-docker/master/scripts/bitcorn_control.sh -O /opt/bitcorn/bitcorn_control.sh
+wget https://raw.githubusercontent.com/BITCORNProject/BITCORN-docker/master/scripts/bitcorn_all_params.sh -O /opt/bitcorn/bitcorn_all_params.sh
+wget https://raw.githubusercontent.com/BITCORNProject/BITCORN-docker/master/scripts/uninstall_bitcorn.sh -O /opt/bitcorn/uninstall_bitcorn.sh
+wget https://raw.githubusercontent.com/BITCORNProject/BITCORN-docker/master/scripts/bitcorn_mn_status.sh -O /opt/bitcorn/bitcorn_mn_status.sh
+wget https://raw.githubusercontent.com/BITCORNProject/BITCORN-docker/master/scripts/bitcorn-cli.sh -O /opt/bitcorn/bitcorn-cli.sh
+wget https://raw.githubusercontent.com/BITCORNProject/BITCORN-docker/master/scripts/bitcorn_repair.sh -O /opt/bitcorn/bitcorn_repair.sh
+chmod +x /opt/bitcorn/*.sh
 
 echo
 echo "####### SERVER INSTALLED COPY AND PASTE THE FOLLOWING COMMAND TO INSTALL YOUR FIRST NODE"
-echo "source ~/.bashrc && install_bitg.sh"
+echo "source ~/.bashrc && install_bitcorn.sh"
