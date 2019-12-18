@@ -19,7 +19,7 @@ port=42${idstring}
 rpcport=10${idstring}
 
 echo "####### creating /etc/systemd/system/bitcorn-${idstring}.service"
-IMAGE=docker.pkg.github.com/bitcornproject/bitcorn-docker/corn:test1
+IMAGE=docker.pkg.github.com/bitcornproject/bitcorn-docker/corn:latest
 cat <<EOF >/etc/systemd/system/bitcorn-${idstring}.service
 [Unit]
 Description=BITCORN Daemon Container ${idstring}
