@@ -19,7 +19,7 @@ port=4242${idstring}
 rpcport=10${idstring}
 
 echo "####### creating /etc/systemd/system/bitcorn-${idstring}.service"
-IMAGE=registry.gitlab.com/bitcorn/bitcorn-docker:latest
+IMAGE=docker.pkg.github.com/bitcornproject/bitcorn-docker/corn:test1
 cat <<EOF >/etc/systemd/system/bitcorn-${idstring}.service
 [Unit]
 Description=BITCORN Daemon Container ${idstring}
@@ -58,9 +58,6 @@ logtimestamps=1
 port=${port}
 externalip=${IP}
 
-addnode=45.63.77.163
-addnode=104.156.231.87
-addnode=69.90.132.181
 EOF
 
 systemctl start bitcorn-${idstring}
