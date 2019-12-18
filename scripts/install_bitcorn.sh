@@ -88,4 +88,5 @@ sleep 30
 
 sh /opt/bitcorn/chainparams-${idstring}.sh
 
-echo "#--# type 'source ~/.bashrc' after that you can use the bitcorn-cli-${idstring} i.E. 'bitcorn-cli-${idstring} masternode status'"
+echo "You can now use the bitcorn-cli for your nodes. For instance 'bitcorn-cli-${idstring} masternode status'"
+source ~/.bashrc
