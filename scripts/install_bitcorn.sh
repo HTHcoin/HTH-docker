@@ -12,7 +12,7 @@ id=1
 idstring=$(printf '%03d' ${id})
 while [ -f "/etc/systemd/system/bitcorn-${idstring}.service" ]; do
   id=$((id + 1))
-  idstring=$(printf '%01d' ${id})
+  idstring=$(printf '%03d' ${id})
 done
 rpcport=18${idstring}
 port=4242${idstring}
