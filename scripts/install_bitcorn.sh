@@ -83,16 +83,8 @@ EOF
 chmod +x /opt/bitcorn/chainparams-${idstring}.sh
 
 count=1
-until bitcorn-cli-${idstring} masternode status 2> /dev/null; do
-  echo "##### Waiting for start. Your parameters will appear shortly (1-2 mins)! (looping $count)"
-  sleep 10
-  count=$((count + 1))
-  if [ $count -gt 30 ]; then
-    echo "##### Server seems overloaded cannot get chainparams try again later with 'sh /opt/bitcorn/chainparams-${idstring}.sh'"
-    break
-  fi
-done
-sleep 5
+
+sleep 30
 
 sh /opt/bitcorn/chainparams-${idstring}.sh
 
