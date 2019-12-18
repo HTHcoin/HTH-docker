@@ -15,7 +15,7 @@ while [ -f "/etc/systemd/system/bitcorn-${idstring}.service" ]; do
   idstring=$(printf '%03d' ${id})
 done
 rpcport=18${idstring}
-port=9${idstring}
+port=42${idstring}
 rpcport=10${idstring}
 
 echo "####### creating /etc/systemd/system/bitcorn-${idstring}.service"
