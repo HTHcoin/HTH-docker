@@ -33,7 +33,7 @@ ExecStartPre=-/usr/bin/docker stop bitcorn-${idstring}
 ExecStartPre=-/usr/bin/docker rm  bitcorn-${idstring}
 # Always pull the latest docker image
 ExecStartPre=/usr/bin/docker pull ${IMAGE}
-ExecStop=/usr/bin/docker exec bitcorn-${idstring} /opt/app/bitcorn-cli -testnet stop
+ExecStop=/usr/bin/docker exec bitcorn-${idstring} /opt/app/bitcorn-cli stop
 ExecStart=/usr/bin/docker run --rm -p ${port}:${port} -p ${rpcport}:${rpcport} -v /mnt/bitcorn/${idstring}:/root/.bitcorn --name bitcorn-${idstring} ${IMAGE}
 [Install]
 WantedBy=multi-user.target
@@ -70,7 +70,7 @@ systemctl start bitcorn-${idstring}
 echo "####### adding control scripts"
 cat <<EOF >/opt/bitcorn/bitcorn-cli-${idstring}
 #!/bin/bash
-docker exec bitcorn-${idstring} /opt/app/bitcorn-cli -testnet \$@
+docker exec bitcorn-${idstring} /opt/app/bitcorn-cli \$@
 EOF
 chmod +x /opt/bitcorn/bitcorn-cli-${idstring}
 
