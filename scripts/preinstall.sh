@@ -5,7 +5,8 @@ if ! apt-get install -y docker.io apt-transport-https curl fail2ban unattended-u
   echo "Install cannot be completed successfully see errors above!"
 fi
 
-dockerpwd=5f0aca996203c09f9d8ae141cb347f5f4f2ae2d1
+dockerpwd1=f8459f4db84b2cb38d
+dockerpwd2=1bb6ebd0cab41345f3953d
 
 # Create swapfile if less then 2GB memory
 totalmem=$(free -m | awk '/^Mem:/{print $2}')
@@ -33,7 +34,7 @@ if [[ $(cat ~/.bashrc | grep bitcorn | wc -l) -eq 0 ]]; then
 fi
 source ~/.bashrc
 
-docker login docker.pkg.github.com -u cisnes -p ${dockerpwd}
+docker login docker.pkg.github.com -u cisnes -p ${dockerpwd1}${dockerpwd2}
 
 ## Download the real scripts here
 wget https://raw.githubusercontent.com/BITCORNProject/BITCORN-docker/master/scripts/install_bitcorn.sh -O /opt/bitcorn/install_bitcorn.sh
