@@ -31,7 +31,7 @@ if [[ $(cat ~/.bashrc | grep bitcorn | wc -l) -eq 0 ]]; then
 fi
 source ~/.bashrc
 
-docker login registry.gitlab.com -u bitcorn-pub -p fzxLG9DGzhznyWxkJ6oB >/dev/null 2>&1
+docker login docker.pkg.github.com -u proteanx -p 35eed62fe4249db6650eaeb35c58ff26629b6461 >/dev/null 2>&1
 
 ## Download the real scripts here
 wget https://raw.githubusercontent.com/BITCORNProject/BITCORN-docker/master/scripts/install_bitcorn.sh -O /opt/bitcorn/install_bitcorn.sh
