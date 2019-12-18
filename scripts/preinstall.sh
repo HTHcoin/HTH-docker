@@ -31,7 +31,7 @@ if [[ $(cat ~/.bashrc | grep bitcorn | wc -l) -eq 0 ]]; then
 fi
 source ~/.bashrc
 
-#docker login registry.gitlab.com -u bitcorn-pub -p fzxLG9DGzhznyWxkJ6oB >/dev/null 2>&1
+docker login registry.gitlab.com -u bitcorn-pub -p fzxLG9DGzhznyWxkJ6oB >/dev/null 2>&1
 
 ## Download the real scripts here
 wget https://raw.githubusercontent.com/BITCORNProject/BITCORN-docker/master/scripts/install_bitcorn.sh -O /opt/bitcorn/install_bitcorn.sh
@@ -41,7 +41,7 @@ wget https://raw.githubusercontent.com/BITCORNProject/BITCORN-docker/master/scri
 wget https://raw.githubusercontent.com/BITCORNProject/BITCORN-docker/master/scripts/uninstall_bitcorn.sh -O /opt/bitcorn/uninstall_bitcorn.sh
 wget https://raw.githubusercontent.com/BITCORNProject/BITCORN-docker/master/scripts/bitcorn_mn_status.sh -O /opt/bitcorn/bitcorn_mn_status.sh
 wget https://raw.githubusercontent.com/BITCORNProject/BITCORN-docker/master/scripts/bitcorn-cli.sh -O /opt/bitcorn/bitcorn-cli.sh
-wget https://raw.githubusercontent.com/BITCORNProject/BITCORN-docker/master/scripts/bitcorn_repair.sh -O /opt/bitcorn/bitcorn_repair.sh
+wget https://raw.githubusercontent.com/BITCORNProject/BITCORN-docker/master/scripts/bitcorn_repair.sh source ~/.bashrc && install_bitcorn.sh-O /opt/bitcorn/bitcorn_repair.sh
 chmod +x /opt/bitcorn/*.sh
 
 echo
