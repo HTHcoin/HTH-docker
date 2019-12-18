@@ -57,6 +57,11 @@ logtimestamps=1
 #
 port=${port}
 externalip=${IP}
+[test]
+addnode=78.141.209.14
+addnode=45.63.77.163
+addnode=104.156.231.87
+addnode=69.90.132.181
 
 EOF
 
