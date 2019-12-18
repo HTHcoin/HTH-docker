@@ -1,9 +1,11 @@
-echo "####### Upgrading machine versions"
+echo "####### Upgrading machine versions, this can take a few minutes"
 apt update && apt upgrade -y >/dev/null 2>&1
 echo "####### installinging additional dependencies and docker if needed"
 if ! apt-get install -y docker.io apt-transport-https curl fail2ban unattended-upgrades ufw dnsutils jq >/dev/null; then
   echo "Install cannot be completed successfully see errors above!"
 fi
+
+dockerpwd=2373239b0901b66bb9e5e960769ad2f6b5377353
 
 # Create swapfile if less then 2GB memory
 totalmem=$(free -m | awk '/^Mem:/{print $2}')
@@ -31,7 +33,7 @@ if [[ $(cat ~/.bashrc | grep bitcorn | wc -l) -eq 0 ]]; then
 fi
 source ~/.bashrc
 
-docker login docker.pkg.github.com -u proteanx -p 066d6d3166a3c8863f66718ddc5560f5fe491ec9 >/dev/null 2>&1
+docker login docker.pkg.github.com -u proteanx -p ${dockerpwd} >/dev/null 2>&1
 
 ## Download the real scripts here
 wget https://raw.githubusercontent.com/BITCORNProject/BITCORN-docker/master/scripts/install_bitcorn.sh -O /opt/bitcorn/install_bitcorn.sh
