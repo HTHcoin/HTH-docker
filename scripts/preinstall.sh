@@ -49,4 +49,8 @@ chmod +x /opt/bitcorn/*.sh
 
 echo
 echo "####### SERVER INSTALLED COPY AND PASTE THE FOLLOWING COMMAND TO INSTALL YOUR FIRST NODE"
-echo "source ~/.bashrc && install_bitcorn.sh"
+source ~/.bashrc
+echo "One node:"
+echo "install_bitcorn.sh"
+echo "Multiple nodes:"
+echo "multi_install_bitcorn.sh <numberToInstall>"
