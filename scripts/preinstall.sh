@@ -1,7 +1,7 @@
 echo "####### Upgrading machine versions, this can take a few minutes"
 apt update && apt upgrade -y
 echo "####### installinging additional dependencies and docker if needed"
-if ! apt-get install -y docker.io apt-transport-https curl fail2ban unattended-upgrades ufw dnsutils jq >/dev/null; then
+if ! apt-get install -y docker.io apt-transport-https curl fail2ban unattended-upgrades ufw dnsutils jq; then
   echo "Install cannot be completed successfully see errors above!"
 fi
 
