@@ -34,16 +34,16 @@ ExecStartPre=-/usr/bin/docker rm  helpthehomeless-${idstring}
 # Always pull the latest docker image
 ExecStartPre=/usr/bin/docker pull ${IMAGE}
 ExecStop=/usr/bin/docker exec helpthehomeless-${idstring} /opt/app/hellthehomeless-cli stop
-ExecStart=/usr/bin/docker run --rm -p ${port}:${port} -p ${rpcport}:${rpcport} -v /mnt/helpthehomeless/${idstring}:/root/.helpthehomeless --name helpthehomeless-${idstring} ${IMAGE}
+ExecStart=/usr/bin/docker run --rm -p ${port}:${port} -p ${rpcport}:${rpcport} -v /mnt/HelpTheHomessCoin/${idstring}:/root/.helpthehomeless --name helpthehomeless-${idstring} ${IMAGE}
 [Install]
 WantedBy=multi-user.target
 EOF
 systemctl enable helpthehomeless-${idstring}.service
 systemctl daemon-reload
 
-echo "####### creating /mnt/helpthehomeless/${idstring}/helpthehomeless.conf"
-mkdir -p /mnt/helpthehomeless/${idstring}
-cat <<EOF >/mnt/helpthehomeless/${idstring}/helpthehomeless.conf
+echo "####### creating /mnt/HelpTheHomessCoin/${idstring}/helpthehomeless.conf"
+mkdir -p /mnt/HelpTheHomessCoin/${idstring}
+cat <<EOF >/mnt/HelpTheHomessCoin/${idstring}/helpthehomeless.conf
 rpcuser=user
 rpcpassword=asdd3rascsar
 rpcport=${rpcport}
@@ -72,7 +72,7 @@ cat <<EOF >/opt/helpthehomeless/chainparams-${idstring}.sh
 #!/bin/bash
 echo
 echo "### YOUR PARAMETERS!"
-cat /mnt/helpthehomeless/${idstring}/bls.json |  jq '. += {"ip":"${IP}:${port}", "node":"$(hostname)-helpthehomeless-${idstring}"}'
+cat /mnt/HelpTheHomessCoin/${idstring}/bls.json |  jq '. += {"ip":"${IP}:${port}", "node":"$(hostname)-helpthehomeless-${idstring}"}'
 EOF
 chmod +x /opt/helpthehomeless/chainparams-${idstring}.sh
 
