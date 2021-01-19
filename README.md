@@ -1,5 +1,7 @@
 # HTH-docker
 
+USE AT USER DESCRETION!! HAS NOT BEEN TESTED BY HTH ON HTH NETWORK!!
+
 Full guide: 
 Paste medium URL here!
 
