@@ -23,9 +23,9 @@ fi
 trap "exit 1"           HUP INT PIPE QUIT TERM
 trap 'rm -rf "$TMPDIR"' EXIT
 
-mv "/mnt/helpthehomess/${id}/helpthehomeless.conf" "/mnt/helpthehomeless/${id}/bls.json" "$TMPDIR/"
-rm -rf "/mnt/helpthehomeless/${id}/*"
-mv $TMPDIR/* "/mnt/helpthebomeless/${id}/"
+mv "/mnt/HelpTheHomessCoin/${id}/helpthehomeless.conf" "/mnt/HelpTheHomessCoin/${id}/bls.json" "$TMPDIR/"
+rm -rf "/mnt/HelpTheHomessCoin/${id}/*"
+mv $TMPDIR/* "/mnt/HelpTheHomessCoin/${id}/"
 
 systemctl start "bitcorn-${id}"
 echo "Repaired your node check the logs with:"
