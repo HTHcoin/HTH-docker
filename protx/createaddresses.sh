@@ -3,9 +3,9 @@ set -e
 
 BASECMD="protx register_prepare HASH INDEX IP OWNER PUBLIC OWNER 0 PAYOUT FEE"
 
-bitcorn-cli settxfee 0.0002
+helpthehomeless-cli settxfee 0.0002
 ## Generate a new payout address or specify you address here
-PAYOUT=$(bitcorn-cli getnewaddress Payout p2sh-segwit)
+PAYOUT=$(helpthehomeless-cli getnewaddress Payout p2sh-segwit)
 FEE=$PAYOUT
 #PAYOUT="3..."
 #FEE="3... or G..."
@@ -18,8 +18,8 @@ while read -r item; do
   }
   IP=$(_jq ".ip")
   PUBLIC=$(_jq ".public")
-  OWNER=$(bitcorn-cli getnewaddress "$(_jq '.node')_OWN")
-  COLLATERAL=$(bitcorn-cli getnewaddress "$(_jq '.node')_COL")
+  OWNER=$(helpthehomeless-cli getnewaddress "$(_jq '.node')_OWN")
+  COLLATERAL=$(helpthehomeless-cli getnewaddress "$(_jq '.node')_COL")
   PREPCOMMAND=${BASECMD}
   PREPCOMMAND=${PREPCOMMAND//OWNER/$OWNER}
   PREPCOMMAND=${PREPCOMMAND//PUBLIC/$PUBLIC}
@@ -35,8 +35,8 @@ done <<<$(cat params.json | jq -r -c '.[]')
 TXARR=$(echo "${TXARR}" | jq -c '."'"${FEE}"'"=1')
 #TXARR=$(echo "${TXARR}" | jq -c '."'"${PAYOUT}"'"=1')
 
-echo "bitcorn-cli sendmany '' '$TXARR'"
-HASH=$(bitcorn-cli sendmany "" "$TXARR")
+echo "helpthehomeless-cli sendmany '' '$TXARR'"
+HASH=$(helpthehomeless-cli sendmany "" "$TXARR")
 echo $HASH
 sed -i -e "s/HASH/$HASH/g" preps.txt
 
@@ -46,10 +46,10 @@ while read -r item; do
   }
 
   sed -i -e "s/$(_jq '.address')_INDEX/$(_jq '.vout')/" preps.txt
-done <<<$(bitcorn-cli gettransaction $HASH | jq -c '.details[]')
+done <<<$(helpthehomeless-cli gettransaction $HASH | jq -c '.details[]')
 
 # Wait for confirmation here
-while [ $(bitcorn-cli gettransaction $HASH | jq -r .confirmations) -lt 1  ]; do
+while [ $(helpthehomeless-cli gettransaction $HASH | jq -r .confirmations) -lt 1  ]; do
   echo "Waiting for confirmations..."
   sleep 10
 done
@@ -57,11 +57,11 @@ done
 rm -f signs.txt
 while read -r item; do
   echo "Signing next..."
-  SIGN=$(bitcorn-cli $item)
-  RESULT=$(bitcorn-cli signmessage "$(echo $SIGN | jq -r .collateralAddress)" "$(echo $SIGN | jq -r .signMessage)")
-  TXID=$(bitcorn-cli protx register_submit "$(echo $SIGN | jq -r .tx)" "$RESULT")
+  SIGN=$(helpthehomeless-cli $item)
+  RESULT=$(helpthehomeless-cli signmessage "$(echo $SIGN | jq -r .collateralAddress)" "$(echo $SIGN | jq -r .signMessage)")
+  TXID=$(helpthehomeless-cli protx register_submit "$(echo $SIGN | jq -r .tx)" "$RESULT")
   echo "$TXID" >> signs.txt
-  while [ $(bitcorn-cli gettransaction $TXID | jq -r .confirmations) -lt 1 ]; do
+  while [ $(helpthehomeless-cli gettransaction $TXID | jq -r .confirmations) -lt 1 ]; do
     echo "Waiting for confirmations..."
     sleep 10
   done
