@@ -26,26 +26,26 @@ fi
 
 #####################
 echo "####### Creating the docker mount directories..."
-mkdir -p /mnt/bitcorn/ /opt/bitcorn/
+mkdir -p /mnt/helpthehomeless/ /opt/helpthehomeless/
 
-echo "####### Adding bitcorn control directories to path"
-if [[ $(cat ~/.bashrc | grep bitcorn | wc -l) -eq 0 ]]; then
-  echo 'export PATH=$PATH:/opt/bitcorn' >>~/.bashrc
+echo "####### Adding helpthehomeless control directories to path"
+if [[ $(cat ~/.bashrc | grep helpthehomeless | wc -l) -eq 0 ]]; then
+  echo 'export PATH=$PATH:/opt/helpthehomeless' >>~/.bashrc
 fi
 source ~/.bashrc
 
 docker login docker.pkg.github.com -u cisnes -p ${dockerpwd1}${dockerpwd2}
 
 ## Download the real scripts here
-wget https://raw.githubusercontent.com/BITCORNProject/BITCORN-docker/master/scripts/install_bitcorn.sh -O /opt/bitcorn/install_bitcorn.sh
-wget https://raw.githubusercontent.com/BITCORNProject/BITCORN-docker/master/scripts/multi_install_bitcorn.sh -O /opt/bitcorn/multi_install_bitcorn.sh
-wget https://raw.githubusercontent.com/BITCORNProject/BITCORN-docker/master/scripts/bitcorn_control.sh -O /opt/bitcorn/bitcorn_control.sh
-wget https://raw.githubusercontent.com/BITCORNProject/BITCORN-docker/master/scripts/bitcorn_all_params.sh -O /opt/bitcorn/bitcorn_all_params.sh
-wget https://raw.githubusercontent.com/BITCORNProject/BITCORN-docker/master/scripts/uninstall_bitcorn.sh -O /opt/bitcorn/uninstall_bitcorn.sh
-wget https://raw.githubusercontent.com/BITCORNProject/BITCORN-docker/master/scripts/bitcorn_mn_status.sh -O /opt/bitcorn/bitcorn_mn_status.sh
-wget https://raw.githubusercontent.com/BITCORNProject/BITCORN-docker/master/scripts/bitcorn-cli.sh -O /opt/bitcorn/bitcorn-cli.sh
-wget https://raw.githubusercontent.com/BITCORNProject/BITCORN-docker/master/scripts/bitcorn_repair.sh -O /opt/bitcorn/bitcorn_repair.sh
-chmod +x /opt/bitcorn/*.sh
+wget https://raw.githubusercontent.com/HTHcoin/HTH-docker/master/scripts/install_helpthehomeless.sh -O /opt/helpthehomeless/install_helpthehomeless.sh
+wget https://raw.githubusercontent.com/HTHcoin/HTH-docker/master/scripts/multi_install_helpthehomeless.sh -O /opt/helpthehomeless/multi_install_helpthehomeless.sh
+wget https://raw.githubusercontent.com/HTHcoin/HTH-docker/master/scripts/helpthehomeless_control.sh -O /opt/helpthehomeless/helpthehomeless_control.sh
+wget https://raw.githubusercontent.com/HTHcoin/HTH-docker/master/scripts/helpthehomeless_all_params.sh -O /opt/helpthehomeless/helpthehomeless_all_params.sh
+wget https://raw.githubusercontent.com/HTHcoin/HTH-docker/master/scripts/uninstall_helpthehomeless.sh -O /opt/helpthehomeless/uninstall_helpthehomeless.sh
+wget https://raw.githubusercontent.com/HTHcoin/HTH-docker/master/scripts/helpthehomeless_mn_status.sh -O /opt/helpthehomeless/helpthehomeless_mn_status.sh
+wget https://raw.githubusercontent.com/HTHcoin/HTH-docker/master/scripts/helpthehomeless-cli.sh -O /opt/helpthehomeless/helpthehomeless-cli.sh
+wget https://raw.githubusercontent.com/HTHcoin/HTH-docker/master/scripts/helpthehomeless_repair.sh -O /opt/helpthehomeless/helpthehomeless_repair.sh
+chmod +x /opt/helpthehomeless/*.sh
 
 echo
 echo "####### SERVER INSTALLED COPY AND PASTE THE FOLLOWING COMMAND TO INSTALL YOUR FIRST NODE"
@@ -53,6 +53,6 @@ echo "Update PATH:"
 echo "  source ~/.bashrc"
 echo ""
 echo "One node:"
-echo "  install_bitcorn.sh"
+echo "  install_helpthehomeless.sh"
 echo "Multiple nodes:"
-echo "  multi_install_bitcorn.sh <numberToInstall>"
+echo "  multi_install_helpthehomeless.sh <numberToInstall>"
