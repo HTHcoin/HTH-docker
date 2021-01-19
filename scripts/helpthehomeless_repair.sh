@@ -8,7 +8,7 @@ fi
 
 id=$(printf '%03d' "${1}")
 
-systemctl stop "bitcorn-${id}"
+systemctl stop "helpthehomeless-${id}"
 
 # Create a temporary directory and store its name in a variable ...
 TMPDIR=$(mktemp -d)
@@ -23,10 +23,10 @@ fi
 trap "exit 1"           HUP INT PIPE QUIT TERM
 trap 'rm -rf "$TMPDIR"' EXIT
 
-mv "/mnt/bitcorn/${id}/bitcorn.conf" "/mnt/bitcorn/${id}/bls.json" "$TMPDIR/"
-rm -rf "/mnt/bitcorn/${id}/*"
-mv $TMPDIR/* "/mnt/bitcorn/${id}/"
+mv "/mnt/helpthehomess/${id}/helpthehomeless.conf" "/mnt/helpthehomeless/${id}/bls.json" "$TMPDIR/"
+rm -rf "/mnt/helpthehomeless/${id}/*"
+mv $TMPDIR/* "/mnt/helpthebomeless/${id}/"
 
 systemctl start "bitcorn-${id}"
 echo "Repaired your node check the logs with:"
-echo "journalctl -fu bitcorn-${id}"
+echo "journalctl -fu helpthehomeless-${id}"
