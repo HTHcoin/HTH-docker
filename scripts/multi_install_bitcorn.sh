@@ -7,6 +7,6 @@ fi
 
 NUM=$1
 for i in $(seq 1 $1); do
-  /opt/bitcorn/install_bitcorn.sh
+  /opt/helpthehomeless/install_helpthehomeless.sh
 done
 
