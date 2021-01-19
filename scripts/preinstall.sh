@@ -26,7 +26,7 @@ fi
 
 #####################
 echo "####### Creating the docker mount directories..."
-mkdir -p /mnt/helpthehomeless/ /opt/helpthehomeless/
+mkdir -p /mnt/HelpTheHomessCoin/ /opt/helpthehomeless/
 
 echo "####### Adding helpthehomeless control directories to path"
 if [[ $(cat ~/.bashrc | grep helpthehomeless | wc -l) -eq 0 ]]; then
