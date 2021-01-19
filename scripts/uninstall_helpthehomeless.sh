@@ -10,5 +10,5 @@ id=$(printf '%03d' "${1}")
 
 systemctl disable "helpthehomeless-${id}"
 systemctl stop "helpthehomeless-${id}"
-rm -r "/mnt/helpthehomeless/${id}"
+rm -r "/mnt/HelpTheHomessCoin/${id}"
 rm "/etc/systemd/system/helpthehomeless-${id}.service"
