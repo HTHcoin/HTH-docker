@@ -27,6 +27,6 @@ mv "/mnt/HelpTheHomessCoin/${id}/helpthehomeless.conf" "/mnt/HelpTheHomessCoin/$
 rm -rf "/mnt/HelpTheHomessCoin/${id}/*"
 mv $TMPDIR/* "/mnt/HelpTheHomessCoin/${id}/"
 
-systemctl start "bitcorn-${id}"
+systemctl start "helpthehomeless-${id}"
 echo "Repaired your node check the logs with:"
 echo "journalctl -fu helpthehomeless-${id}"
